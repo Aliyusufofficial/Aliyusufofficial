@@ -2,21 +2,137 @@
   "baslik": "Patronun arabasını kaynakladım",
   "format": "dikey 1080x1920, 40-50 sn",
   "sahneler": [
-    {"id": 1,  "konusan": "USTA", "metin": "Robo. Patronun arabasını kaynakladım.", "sure": 2.5, "kamera": "Ustaya yakın çekim, elinde çay, gururlu", "hook": true},
-    {"id": 2,  "konusan": "ROBO", "metin": "Hangi parçasını?", "sure": 1.8, "kamera": "Robo yakın çekim, anten yanıp sönüyor"},
-    {"id": 3,  "konusan": "USTA", "metin": "Egzozu. Çatlamıştı dedi.", "sure": 2.2, "kamera": "Usta, omuz silkiyor"},
-    {"id": 4,  "konusan": "ROBO", "metin": "Usta... egzozu değil. Kapıları kaynaklamışsın.", "sure": 3.2, "kamera": "Robo, gözleri yavaşça kısılıyor"},
-    {"id": 5,  "konusan": "USTA", "metin": "Ne kapısı lan?", "sure": 1.6, "kamera": "Usta, çay ağzında kalıyor"},
-    {"id": 6,  "konusan": "EKRAN", "metin": "Dört kapı. Hepsi. Patron içeride.", "sure": 3.0, "kamera": "Atölye kamerası ekranı: arabanın içinde patron camı yumrukluyor", "ekran": "KAMERA 2 — OTOPARK\n● KAYIT"},
-    {"id": 7,  "konusan": "USTA", "metin": "...Ne zamandır içeride?", "sure": 2.0, "kamera": "Ustaya yavaş zoom"},
-    {"id": 8,  "konusan": "ROBO", "metin": "Kırk dakika. Klima da kapalı.", "sure": 2.5, "kamera": "Robo, sakin"},
-    {"id": 9,  "konusan": "USTA", "metin": "Hay senin [BİİİP]! Neden söylemedin?!", "sure": 2.8, "kamera": "Usta ayağa fırlıyor, çay dökülüyor", "bip": [[0.9, 0.7]]},
-    {"id": 10, "konusan": "ROBO", "metin": "\"Kaynak yaparken beni rahatsız etme\" demiştin.", "sure": 3.0, "kamera": "Robo yakın çekim"},
-    {"id": 11, "konusan": "ROBO", "metin": "Rahatsız etmedim. Kaydettim.", "sure": 2.2, "kamera": "Robo'nun ekranında kayıt simgesi"},
-    {"id": 12, "konusan": "EKRAN", "metin": "patron_arabada_40dk.mp4", "sure": 2.0, "kamera": "Dosya ekranı", "ekran": "patron_arabada_40dk.mp4\n▶ 40:12"},
-    {"id": 13, "konusan": "USTA", "metin": "...Bunu kimse görmeyecek.", "sure": 2.2, "kamera": "Usta, fısıldıyor"},
-    {"id": 14, "konusan": "ROBO", "metin": "Şirket grubuna gönderdim.", "sure": 2.0, "kamera": "Robo, gözleri mutlu kıvrık"},
-    {"id": 15, "konusan": "EKRAN", "metin": "", "sure": 1.8, "kamera": "WhatsApp grubu: 'Şirket' — 47 kişi gördü, mesajlar yağıyor", "ekran": "ŞİRKET GRUBU\n✓✓ 47 kişi gördü\nMüdür: HAHAHAHA"},
-    {"id": 16, "konusan": "USTA", "metin": "ROBOOOO! [BİİİP BİİİP]", "sure": 2.6, "kamera": "Geniş çekim, usta Robo'yu kovalıyor, kıvılcımlar", "bip": [[1.0, 0.5], [1.6, 0.6]]}
+    {
+      "id": 1,
+      "konusan": "USTA",
+      "metin": "Patronun arabasını kaynakladım.",
+      "sure": 2.5,
+      "kamera": "Ustaya yakın çekim, elinde çay, gururlu",
+      "hook": true
+    },
+    {
+      "id": 2,
+      "konusan": "ROBO",
+      "metin": "Hangi parçasını?",
+      "sure": 1.8,
+      "kamera": "Robo yakın çekim, anten yanıp sönüyor"
+    },
+    {
+      "id": 3,
+      "konusan": "USTA",
+      "metin": "Egzozu. Çatlamıştı dedi.",
+      "sure": 2.2,
+      "kamera": "Usta, omuz silkiyor"
+    },
+    {
+      "id": 4,
+      "konusan": "ROBO",
+      "metin": "Usta... egzozu değil. Kapıları kaynaklamışsın.",
+      "sure": 3.2,
+      "kamera": "Robo, gözleri yavaşça kısılıyor"
+    },
+    {
+      "id": 5,
+      "konusan": "USTA",
+      "metin": "Ne kapısı lan?",
+      "sure": 1.6,
+      "kamera": "Usta, çay ağzında kalıyor"
+    },
+    {
+      "id": 6,
+      "konusan": "EKRAN",
+      "metin": "Dört kapı. Hepsi. Patron içeride.",
+      "sure": 3.0,
+      "kamera": "Atölye kamerası ekranı: arabanın içinde patron camı yumrukluyor",
+      "ekran": "KAMERA 2 — OTOPARK\n● KAYIT"
+    },
+    {
+      "id": 7,
+      "konusan": "USTA",
+      "metin": "...Ne zamandır içeride?",
+      "sure": 2.0,
+      "kamera": "Ustaya yavaş zoom"
+    },
+    {
+      "id": 8,
+      "konusan": "ROBO",
+      "metin": "Kırk dakika. Klima da kapalı.",
+      "sure": 2.5,
+      "kamera": "Robo, sakin"
+    },
+    {
+      "id": 9,
+      "konusan": "USTA",
+      "metin": "Hay senin [BİİİP]! Neden söylemedin?!",
+      "sure": 2.8,
+      "kamera": "Usta ayağa fırlıyor, çay dökülüyor",
+      "bip": [
+        [
+          0.9,
+          0.7
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "konusan": "ROBO",
+      "metin": "\"Kaynak yaparken beni rahatsız etme\" demiştin.",
+      "sure": 3.0,
+      "kamera": "Robo yakın çekim"
+    },
+    {
+      "id": 11,
+      "konusan": "ROBO",
+      "metin": "Rahatsız etmedim. Kaydettim.",
+      "sure": 2.2,
+      "kamera": "Robo'nun ekranında kayıt simgesi"
+    },
+    {
+      "id": 12,
+      "konusan": "EKRAN",
+      "metin": "patron_arabada_40dk.mp4",
+      "sure": 2.0,
+      "kamera": "Dosya ekranı",
+      "ekran": "patron_arabada_40dk.mp4\n▶ 40:12"
+    },
+    {
+      "id": 13,
+      "konusan": "USTA",
+      "metin": "...Bunu kimse görmeyecek.",
+      "sure": 2.2,
+      "kamera": "Usta, fısıldıyor"
+    },
+    {
+      "id": 14,
+      "konusan": "ROBO",
+      "metin": "Şirket grubuna gönderdim.",
+      "sure": 2.0,
+      "kamera": "Robo, gözleri mutlu kıvrık"
+    },
+    {
+      "id": 15,
+      "konusan": "EKRAN",
+      "metin": "",
+      "sure": 1.8,
+      "kamera": "WhatsApp grubu: 'Şirket' — 47 kişi gördü, mesajlar yağıyor",
+      "ekran": "ŞİRKET GRUBU\n✓✓ 47 kişi gördü\nMüdür: HAHAHAHA"
+    },
+    {
+      "id": 16,
+      "konusan": "USTA",
+      "metin": "ROBOOOO! [BİİİP BİİİP]",
+      "sure": 2.6,
+      "kamera": "Geniş çekim, usta Robo'yu kovalıyor, kıvılcımlar",
+      "bip": [
+        [
+          1.0,
+          0.5
+        ],
+        [
+          1.6,
+          0.6
+        ]
+      ]
+    }
   ]
 }
