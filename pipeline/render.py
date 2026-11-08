@@ -7,7 +7,7 @@ Her sahne için:
   - Altyazı, BİİİP sesi ve ekran yazıları otomatik eklenir.
 
 Kullanım:
-  python3 pipeline/render.py senaryolar/001-patronun-arabasi.json
+  python3 pipeline/render.py senaryolar/001-patronun-arabasi.json [--altyazisiz]
 Çıktı: cikti/<senaryo>.mp4
 """
 import json
@@ -83,7 +83,7 @@ def sessizlikleri_kes(klip: Path, hedef: Path, hiz: float = 1.1, esik="-35dB",
     return sum(b - a for a, b in birlesik) / hiz
 
 
-def sahne_render(s, ad, tmp: Path) -> Path:
+def sahne_render(s, ad, tmp: Path, onceki=None, altyazi=True) -> Path:
     sid, sure = s["id"], float(s["sure"])
     gorsel = bul(ROOT / "assets/gorseller" / ad, sid, [".mp4", ".png", ".jpg"])
     ses = bul(ROOT / "assets/sesler" / ad, sid, [".mp3", ".wav"])
@@ -94,6 +94,13 @@ def sahne_render(s, ad, tmp: Path) -> Path:
         kesik = tmp / f"kesik_{sid:03d}.mp4"
         sure = sessizlikleri_kes(gorsel, kesik, hiz=float(s.get("hiz", 1.1)))
         gorsel, klip_sesi = kesik, True
+
+    arka_plan = False
+    if gorsel is None and s["konusan"] == "EKRAN" and onceki is not None:
+        # ekran sahnesi: önceki sahnenin son karesini bulanık arka plan yap (siyah ekran olmasın)
+        kare = tmp / f"son_{sid:03d}.png"
+        run(["ffmpeg", "-y", "-sseof", "-0.1", "-i", str(onceki), "-frames:v", "1", "-update", "1", str(kare)])
+        gorsel, arka_plan = kare, True
 
     # --- girdiler
     cmd = ["ffmpeg", "-y"]
@@ -115,6 +122,8 @@ def sahne_render(s, ad, tmp: Path) -> Path:
 
     # --- görüntü filtreleri
     v = [f"scale={W}:{H}:force_original_aspect_ratio=increase", f"crop={W}:{H}", f"fps={FPS}"]
+    if arka_plan:
+        v += ["boxblur=18:2", "eq=brightness=-0.18"]
     if gorsel is not None and gorsel.suffix != ".mp4":
         # durağan görsele hafif yakınlaşma (Ken Burns)
         v.append(f"zoompan=z='min(zoom+0.0008,1.08)':d=1:s={W}x{H}:fps={FPS}")
@@ -126,10 +135,17 @@ def sahne_render(s, ad, tmp: Path) -> Path:
         v.append(f"drawtext=fontfile={FONT}:textfile='{yaz(tmp, f'n{sid}.txt', not_)}':"
                  f"fontsize=40:fontcolor=white@0.6:line_spacing=12:x=(w-tw)/2:y=540")
     if s.get("ekran"):
-        v.append(f"drawbox=x=90:y=760:w={W-180}:h=330:color=black@0.85:t=fill")
+        satir = s["ekran"].count("\n") + 1
+        kh = 110 + satir * 78
+        ky = (H - kh) // 2
+        v.append(f"drawbox=x=70:y={ky}:w={W-140}:h={kh}:color=0x0b0e14@0.92:t=fill")
+        v.append(f"drawbox=x=70:y={ky}:w={W-140}:h={kh}:color=0x3fb950@0.9:t=4")
         v.append(f"drawtext=fontfile={MONO}:textfile='{yaz(tmp, f'e{sid}.txt', s['ekran'])}':"
-                 f"fontsize=52:fontcolor=0x7CFC9A:line_spacing=18:x=140:y=810")
-    if s.get("metin"):
+                 f"fontsize=54:fontcolor=0x7CFC9A:line_spacing=24:x=120:y={ky + 60}")
+    for x, y, bw, bh, t0, t1 in s.get("bulaniklastir", []):
+        # Flow'un kendi eklediği yazıyı gizle (çıktı koordinatlarında)
+        v.append(f"delogo=x={x}:y={y}:w={bw}:h={bh}:enable='between(t,{t0},{t1})'")
+    if s.get("metin") and altyazi:
         # cümlelere böl, her cümleyi uzunluğuyla orantılı süre boyunca sırayla göster
         cumleler = [c.strip() for c in re.split(r"(?<=[.!?])\s+|\s/\s", s["metin"]) if c.strip()]
         toplam = sum(len(c) for c in cumleler)
@@ -169,7 +185,8 @@ def sahne_render(s, ad, tmp: Path) -> Path:
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
-    senaryo = Path(sys.argv[1])
+    altyazi = "--altyazisiz" not in sys.argv
+    senaryo = Path([a for a in sys.argv[1:] if not a.startswith("--")][0])
     ad = senaryo.stem
     veri = json.loads(senaryo.read_text(encoding="utf-8"))
     (ROOT / "cikti").mkdir(exist_ok=True)
@@ -180,7 +197,8 @@ def main():
         parcalar = []
         for s in veri["sahneler"]:
             print(f"  sahne {s['id']:>2} — {s['konusan']}: {s.get('metin', '')[:40]}")
-            parcalar.append(sahne_render(s, ad, tmp))
+            onceki = parcalar[-1] if parcalar else None
+            parcalar.append(sahne_render(s, ad, tmp, onceki, altyazi))
         liste = tmp / "liste.txt"
         liste.write_text("".join(f"file '{p}'\n" for p in parcalar))
         run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(liste),

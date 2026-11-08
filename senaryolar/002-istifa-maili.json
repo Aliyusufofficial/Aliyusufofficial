@@ -2,14 +2,80 @@
   "baslik": "İstifa Maili",
   "not": "Sahne id = Flow klip numarası (assets/gorseller/002-istifa-maili/<id>.mp4). 41 ve 61 ekran sahneleri, klip gerekmez.",
   "sahneler": [
-    {"id": 1, "konusan": "CENGIZ", "metin": "Zeki. Patrona mail attırdım sana. İzin istedim, kibar olsun dedim.", "sure": 6.0, "kamera": "Cengiz yakın plan, sırıtıyor"},
-    {"id": 2, "konusan": "ZEKI", "metin": "İzin istemedin. 'Artık yeter' yazmışsın. İstifa olarak gönderdim.", "sure": 6.0, "kamera": "Zeki yakın plan, sabit"},
-    {"id": 3, "konusan": "CENGIZ", "metin": "Ne?! Kime? Sadece patrona gitti, değil mi?!", "sure": 5.0, "kamera": "Cengiz punch-in, şok"},
-    {"id": 4, "konusan": "ZEKI", "metin": "Patrona. Bilgi olarak: tüm şirkete. Bir de LinkedIn'e.", "sure": 6.0, "kamera": "Zeki yavaş zoom"},
-    {"id": 41, "konusan": "EKRAN", "metin": "", "sure": 2.2, "kamera": "Gönderilen mail ekranı", "ekran": "GÖNDERİLDİ ✓\nBilgi: Tüm Şirket (214)\nKonu: ARTIK YETER\nLinkedIn: 312 beğeni"},
-    {"id": 5, "konusan": "CENGIZ", "metin": "Hay senin [BİİİP]! Ben senin [BİİİP]! Bitti. Ben bittim.", "sure": 5.5, "kamera": "Cengiz ayağa fırlıyor", "bip": [[1.2, 0.7], [2.4, 0.9]]},
-    {"id": 6, "konusan": "KOMUT", "metin": "Gönderilmedi. 'Sinirliyken attığım maili tut' demiştin. Tuttum.", "sure": 6.0, "kamera": "Komut alçak açı, pembe ışık"},
-    {"id": 61, "konusan": "EKRAN", "metin": "", "sure": 2.0, "kamera": "Giden kutusu", "ekran": "GİDEN KUTUSU\n1 mail bekletildi\n✓ İptal edildi.\nKimse görmedi."},
-    {"id": 7, "konusan": "CENGIZ", "metin": "Komut... hayatımı kurtardın. Şimdi patrona ne düşündüğümü yaz. / CENGİZ.", "sure": 6.5, "kamera": "Geniş plan, robotlar dönüyor"}
+    {
+      "id": 1,
+      "konusan": "CENGIZ",
+      "metin": "Zeki. Patrona mail attırdım sana. İzin istedim, kibar olsun dedim.",
+      "sure": 6.0,
+      "kamera": "Cengiz yakın plan, sırıtıyor"
+    },
+    {
+      "id": 2,
+      "konusan": "ZEKI",
+      "metin": "İzin istemedin. 'Artık yeter' yazmışsın. İstifa olarak gönderdim.",
+      "sure": 6.0,
+      "kamera": "Zeki yakın plan, sabit"
+    },
+    {
+      "id": 3,
+      "konusan": "CENGIZ",
+      "metin": "Ne?! Kime? Sadece patrona gitti, değil mi?!",
+      "sure": 5.0,
+      "kamera": "Cengiz punch-in, şok"
+    },
+    {
+      "id": 4,
+      "konusan": "ZEKI",
+      "metin": "Patrona. Bilgi olarak: tüm şirkete. Bir de LinkedIn'e.",
+      "sure": 6.0,
+      "kamera": "Zeki yavaş zoom"
+    },
+    {
+      "id": 41,
+      "konusan": "EKRAN",
+      "metin": "",
+      "sure": 2.2,
+      "kamera": "Gönderilen mail ekranı",
+      "ekran": "GÖNDERİLDİ ✓\nBilgi: Tüm Şirket (214)\nKonu: ARTIK YETER\nLinkedIn: 312 beğeni"
+    },
+    {
+      "id": 5,
+      "konusan": "CENGIZ",
+      "metin": "Hay senin ta amına koyayım! Ben senin... Bitti. Ben bittim.",
+      "sure": 5.5,
+      "kamera": "Cengiz ayağa fırlıyor",
+      "bulaniklastir": [
+        [
+          330,
+          1550,
+          490,
+          105,
+          0,
+          99
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "konusan": "KOMUT",
+      "metin": "Gönderilmedi. 'Sinirliyken attığım maili tut' demiştin. Tuttum.",
+      "sure": 6.0,
+      "kamera": "Komut alçak açı, pembe ışık"
+    },
+    {
+      "id": 61,
+      "konusan": "EKRAN",
+      "metin": "",
+      "sure": 2.0,
+      "kamera": "Giden kutusu",
+      "ekran": "GİDEN KUTUSU\n1 mail bekletildi\n✓ İptal edildi.\nKimse görmedi."
+    },
+    {
+      "id": 7,
+      "konusan": "CENGIZ",
+      "metin": "Komut... hayatımı kurtardın. Şimdi patrona ne düşündüğümü yaz. / CENGİZ.",
+      "sure": 6.5,
+      "kamera": "Geniş plan, robotlar dönüyor"
+    }
   ]
 }
