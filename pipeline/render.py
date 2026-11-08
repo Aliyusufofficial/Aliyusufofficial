@@ -11,6 +11,7 @@ Kullanım:
 Çıktı: cikti/<senaryo>.mp4
 """
 import json
+import re
 import subprocess
 import sys
 import tempfile
@@ -117,7 +118,7 @@ def sahne_render(s, ad, tmp: Path) -> Path:
     if gorsel is not None and gorsel.suffix != ".mp4":
         # durağan görsele hafif yakınlaşma (Ken Burns)
         v.append(f"zoompan=z='min(zoom+0.0008,1.08)':d=1:s={W}x{H}:fps={FPS}")
-    if gorsel is None:
+    if gorsel is None and s["konusan"] != "EKRAN":
         # taslak kart: konuşan + kamera notu
         v.append(f"drawtext=fontfile={FONT}:textfile='{yaz(tmp, f'k{sid}.txt', s['konusan'])}':"
                  f"fontsize=110:fontcolor=white@0.9:x=(w-tw)/2:y=360")
@@ -129,10 +130,18 @@ def sahne_render(s, ad, tmp: Path) -> Path:
         v.append(f"drawtext=fontfile={MONO}:textfile='{yaz(tmp, f'e{sid}.txt', s['ekran'])}':"
                  f"fontsize=52:fontcolor=0x7CFC9A:line_spacing=18:x=140:y=810")
     if s.get("metin"):
-        alt = textwrap.fill(s["metin"], 26)
-        v.append(f"drawtext=fontfile={FONT}:textfile='{yaz(tmp, f'a{sid}.txt', alt)}':"
-                 f"fontsize=62:fontcolor=white:borderw=6:bordercolor=black:line_spacing=14:"
-                 f"box=1:boxcolor=black@0.45:boxborderw=24:x=(w-tw)/2:y=h*0.70")
+        # cümlelere böl, her cümleyi uzunluğuyla orantılı süre boyunca sırayla göster
+        cumleler = [c.strip() for c in re.split(r"(?<=[.!?])\s+|\s/\s", s["metin"]) if c.strip()]
+        toplam = sum(len(c) for c in cumleler)
+        t = 0.0
+        for j, c in enumerate(cumleler):
+            uz = sure * len(c) / toplam
+            alt = textwrap.fill(c, 24)
+            v.append(f"drawtext=fontfile={FONT}:textfile='{yaz(tmp, f'a{sid}_{j}.txt', alt)}':"
+                     f"fontsize=58:fontcolor=white:borderw=5:bordercolor=black:line_spacing=12:"
+                     f"box=1:boxcolor=black@0.45:boxborderw=20:x=(w-tw)/2:y=h*0.72:"
+                     f"enable='between(t,{t:.2f},{t + uz:.2f})'")
+            t += uz
     vf = ",".join(v)
 
     # --- ses: BİİİP'ler
