@@ -1,0 +1,17 @@
+{
+  "baslik": "İstifa Maili — referans tarzı kurgu",
+  "klasor": "002-istifa-maili",
+  "sahneler": [
+    {"id": "1a", "kaynak": 1, "konusan": "CENGIZ", "aralik": [0.0, 3.35], "metin": "Zeki lan. O yavşak patrona mail attırdım sana."},
+    {"id": "1b", "kaynak": 1, "konusan": "CENGIZ", "aralik": [4.35, 7.6], "zoom": 1.12, "metin": "İzin istedim. Kibar olsun dedim, siktir et."},
+    {"id": "2a", "kaynak": 2, "konusan": "ZEKI", "aralik": [0.0, 1.4], "metin": "İzin istemedin."},
+    {"id": "2b", "kaynak": 2, "konusan": "ZEKI", "araliklar": [[1.45, 4.85], [5.05, 6.95]], "zoom": 1.1, "metin": "'Artık yeter, siktir git' yazmışsın. İstifa olarak gönderdim."},
+    {"id": "3a", "kaynak": 3, "konusan": "CENGIZ", "aralik": [0.75, 3.35], "zoom": 1.15, "metin": "Ne lan?! Kime gönderdin oğlum?!"},
+    {"id": "3b", "kaynak": 3, "konusan": "CENGIZ", "aralik": [3.35, 6.4], "zoom": 1.32, "metin": "Sadece o pezevenge gitti, değil mi?! Değil mi lan?!"},
+    {"id": "4", "kaynak": 4, "konusan": "ZEKI", "araliklar": [[0.0, 1.6], [2.0, 4.2], [4.65, 7.5]], "hiz": 1.05, "metin": "Patrona. Bilgi olarak: tüm şirkete. Bir de LinkedIn'e. 'Siktir git' kısmını kalın yaptım."},
+    {"id": "41", "konusan": "EKRAN", "metin": "", "sure": 1.8, "ekran": "GÖNDERİLDİ ✓\nBilgi: Tüm Şirket (214)\nKonu: ARTIK YETER\nLinkedIn: 312 beğeni"},
+    {"id": "5", "kaynak": 5, "konusan": "CENGIZ", "araliklar": [[0.0, 5.45], [5.75, 7.9]], "metin": "Hay senin ta amına koyayım! Siktir git lan, orospu çocuğu teneke! Bittim lan. Ben bittim."},
+    {"id": "6", "kaynak": 6, "konusan": "KOMUT", "araliklar": [[0.0, 1.95], [2.4, 7.4]], "metin": "Gönderilmedi. 'Sinirliyken attığım maili tut lan' demiştin. Tuttum."},
+    {"id": "7", "kaynak": 7, "konusan": "CENGIZ", "aralik": [0.0, 7.4], "hiz": 1.05, "bekleme": 1.2, "metin": "Komut... hayatımı kurtardın, aslan parçası. Şimdi o şerefsiz patrona ne düşündüğümü yaz. / CENGİZ."}
+  ]
+}

@@ -84,21 +84,40 @@ def sessizlikleri_kes(klip: Path, hedef: Path, hiz: float = 1.1, esik="-35dB",
 
 
 def sahne_render(s, ad, tmp: Path, onceki=None, altyazi=True) -> Path:
-    sid, sure = s["id"], float(s["sure"])
+    sid, sure = s["id"], float(s.get("sure", 0))
     gorsel = bul(ROOT / "assets/gorseller" / ad, sid, [".mp4", ".png", ".jpg"])
     ses = bul(ROOT / "assets/sesler" / ad, sid, [".mp3", ".wav"])
-    out = tmp / f"sahne_{sid:03d}.mp4"
+    out = tmp / f"sahne_{sid}.mp4"
     klip_sesi = False
-    if gorsel is not None and gorsel.suffix == ".mp4" and ses is None:
+    if "kaynak" in s:
+        # elle kurgu: kaynak klipten seçilen aralıklar + punch-in zoom + sonda bekleme
+        kaynak = ROOT / "assets/gorseller" / ad / f"{s['kaynak']}.mp4"
+        araliklar = s.get("araliklar") or [s["aralik"]]
+        hiz, z, bekle = float(s.get("hiz", 1.08)), float(s.get("zoom", 1.0)), float(s.get("bekleme", 0))
+        fc, et = [], ""
+        for i, (a, b) in enumerate(araliklar):
+            fc.append(f"[0:v]trim={a}:{b},setpts=PTS-STARTPTS[v{i}];[0:a]atrim={a}:{b},asetpts=PTS-STARTPTS[a{i}]")
+            et += f"[v{i}][a{i}]"
+        zoom = f",crop=iw/{z}:ih/{z}:(iw-iw/{z})/2:(ih-ih/{z})/2.6,scale=720:1280" if z != 1.0 else ""
+        pad_v = f",tpad=stop_mode=clone:stop_duration={bekle}" if bekle else ""
+        pad_a = f",apad=pad_dur={bekle}" if bekle else ""
+        fc.append(f"{et}concat=n={len(araliklar)}:v=1:a=1[vc][ac];"
+                  f"[vc]setpts=PTS/{hiz}{zoom}{pad_v}[vo];[ac]atempo={hiz}{pad_a}[ao]")
+        kesik = tmp / f"kurgu_{sid}.mp4"
+        run(["ffmpeg", "-y", "-i", str(kaynak), "-filter_complex", ";".join(fc), "-map", "[vo]", "-map", "[ao]",
+             "-c:v", "libx264", "-pix_fmt", "yuv420p", "-preset", "veryfast", "-c:a", "aac", str(kesik)])
+        sure = sum(b - a for a, b in araliklar) / hiz + bekle
+        gorsel, klip_sesi = kesik, True
+    elif gorsel is not None and gorsel.suffix == ".mp4" and ses is None:
         # Veo/Flow klibi: kendi sesi var → boşlukları kes, süreyi klibe göre ayarla
-        kesik = tmp / f"kesik_{sid:03d}.mp4"
+        kesik = tmp / f"kesik_{sid}.mp4"
         sure = sessizlikleri_kes(gorsel, kesik, hiz=float(s.get("hiz", 1.1)))
         gorsel, klip_sesi = kesik, True
 
     arka_plan = False
     if gorsel is None and s["konusan"] == "EKRAN" and onceki is not None:
         # ekran sahnesi: önceki sahnenin son karesini bulanık arka plan yap (siyah ekran olmasın)
-        kare = tmp / f"son_{sid:03d}.png"
+        kare = tmp / f"son_{sid}.png"
         run(["ffmpeg", "-y", "-sseof", "-0.1", "-i", str(onceki), "-frames:v", "1", "-update", "1", str(kare)])
         gorsel, arka_plan = kare, True
 
@@ -187,16 +206,17 @@ def main():
         sys.exit(__doc__)
     altyazi = "--altyazisiz" not in sys.argv
     senaryo = Path([a for a in sys.argv[1:] if not a.startswith("--")][0])
-    ad = senaryo.stem
+    veri0 = json.loads(senaryo.read_text(encoding="utf-8"))
+    ad = veri0.get("klasor", senaryo.stem)
     veri = json.loads(senaryo.read_text(encoding="utf-8"))
     (ROOT / "cikti").mkdir(exist_ok=True)
-    hedef = ROOT / "cikti" / f"{ad}.mp4"
+    hedef = ROOT / "cikti" / f"{senaryo.stem}.mp4"
 
     with tempfile.TemporaryDirectory() as t:
         tmp = Path(t)
         parcalar = []
         for s in veri["sahneler"]:
-            print(f"  sahne {s['id']:>2} — {s['konusan']}: {s.get('metin', '')[:40]}")
+            print(f"  sahne {str(s['id']):>3} — {s['konusan']}: {s.get('metin', '')[:40]}")
             onceki = parcalar[-1] if parcalar else None
             parcalar.append(sahne_render(s, ad, tmp, onceki, altyazi))
         liste = tmp / "liste.txt"
