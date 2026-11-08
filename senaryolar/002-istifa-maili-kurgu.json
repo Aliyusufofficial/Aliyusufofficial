@@ -2,13 +2,95 @@
   "baslik": "İstifa Maili: sade kurgu",
   "klasor": "002-istifa-maili",
   "sahneler": [
-    {"id": "1", "kaynak": 1, "konusan": "CENGIZ", "aralik": [0.0, 7.6], "hiz": 1.05, "metin": "Zeki lan. O yavşak patrona mail attırdım sana. İzin istedim. Kibar olsun dedim, siktir et."},
-    {"id": "2", "kaynak": 2, "konusan": "ZEKI", "aralik": [0.0, 7.0], "hiz": 1.05, "metin": "İzin istemedin. 'Artık yeter, siktir git' yazmışsın. İstifa olarak gönderdim."},
-    {"id": "3a", "kaynak": 3, "konusan": "CENGIZ", "aralik": [0.0, 3.35], "hiz": 1.05, "metin": "Ne lan?! Kime gönderdin oğlum?!"},
-    {"id": "3b", "kaynak": 3, "konusan": "CENGIZ", "aralik": [3.35, 6.6], "hiz": 1.05, "zoom": 1.2, "metin": "Sadece o pezevenge gitti, değil mi?! Değil mi lan?!"},
-    {"id": "4", "kaynak": 4, "konusan": "ZEKI", "aralik": [0.0, 7.5], "hiz": 1.05, "metin": "Patrona. Bilgi olarak: tüm şirkete. Bir de LinkedIn'e. 'Siktir git' kısmını kalın yaptım."},
-    {"id": "5", "kaynak": 5, "konusan": "CENGIZ", "aralik": [0.0, 7.9], "hiz": 1.05, "metin": "Hay senin ta amına koyayım! Siktir git lan, orospu çocuğu teneke! Bittim lan. Ben bittim."},
-    {"id": "6", "kaynak": 6, "konusan": "KOMUT", "aralik": [0.0, 7.5], "hiz": 1.05, "metin": "Gönderilmedi. 'Sinirliyken attığım maili tut lan' demiştin. Tuttum."},
-    {"id": "7", "kaynak": 7, "konusan": "CENGIZ", "aralik": [0.0, 7.4], "hiz": 1.05, "bekleme": 1.2, "metin": "Komut... hayatımı kurtardın, aslan parçası. Şimdi o şerefsiz patrona ne düşündüğümü yaz. / CENGİZ."}
+    {
+      "id": "1",
+      "kaynak": 1,
+      "konusan": "CENGIZ",
+      "aralik": [
+        0.0,
+        7.6
+      ],
+      "hiz": 1.05,
+      "metin": "Zeki lan. O yavşak patrona mail attırdım sana. İzin istedim. Kibar olsun dedim, siktir et."
+    },
+    {
+      "id": "2",
+      "kaynak": 2,
+      "konusan": "ZEKI",
+      "aralik": [
+        0.0,
+        7.0
+      ],
+      "hiz": 1.05,
+      "metin": "İzin istemedin. 'Artık yeter, siktir git' yazmışsın. İstifa olarak gönderdim."
+    },
+    {
+      "id": "3a",
+      "kaynak": 3,
+      "konusan": "CENGIZ",
+      "aralik": [
+        0.0,
+        3.35
+      ],
+      "hiz": 1.05,
+      "metin": "Ne lan?! Kime gönderdin oğlum?!"
+    },
+    {
+      "id": "3b",
+      "kaynak": 3,
+      "konusan": "CENGIZ",
+      "aralik": [
+        3.35,
+        6.6
+      ],
+      "hiz": 1.05,
+      "zoom": 1.2,
+      "metin": "Sadece o pezevenge gitti, değil mi?! Değil mi lan?!"
+    },
+    {
+      "id": "4",
+      "kaynak": 4,
+      "konusan": "ZEKI",
+      "aralik": [
+        0.0,
+        7.5
+      ],
+      "hiz": 1.05,
+      "metin": "Patrona. Bilgi olarak: tüm şirkete. Bir de LinkedIn'e. 'Siktir git' kısmını kalın yaptım."
+    },
+    {
+      "id": "5",
+      "kaynak": 5,
+      "konusan": "CENGIZ",
+      "aralik": [
+        0.0,
+        7.9
+      ],
+      "hiz": 1.05,
+      "metin": "Hay senin ta amına koyayım! Siktir git lan, orospu çocuğu teneke! Bittim lan. Ben bittim."
+    },
+    {
+      "id": "6",
+      "kaynak": 6,
+      "konusan": "KOMUT",
+      "aralik": [
+        0.0,
+        7.5
+      ],
+      "hiz": 1.05,
+      "metin": "Gönderilmedi. 'Sinirliyken attığım maili tut lan' demiştin. Tuttum."
+    },
+    {
+      "id": "7",
+      "kaynak": 7,
+      "konusan": "CENGIZ",
+      "aralik": [
+        0.0,
+        7.93
+      ],
+      "hiz": 1.05,
+      "bekleme": 0.8,
+      "metin": "Komut... hayatımı kurtardın, aslan parçası. Şimdi o şerefsiz patrona ne düşündüğümü yaz. Ağzına sıçar gibi yaz. / Cengiz, piçlik yapma."
+    }
   ]
 }
